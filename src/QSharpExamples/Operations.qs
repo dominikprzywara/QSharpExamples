@@ -1,16 +1,16 @@
 ﻿namespace QSharpExamples
 {
-    open Microsoft.Quantum.Primitive;
-    open Microsoft.Quantum.Canon;
-    
-    operation Set (desired: Result, q1: Qubit) : Unit {
+	open Microsoft.Quantum.Primitive;
+	open Microsoft.Quantum.Canon;
+	
+	operation Set (desired: Result, q1: Qubit) : Unit {
 		let current = M(q1);
 
 		if (desired != current)
 		{
 			X(q1);
 		}
-    }
+	}
 	
 	operation Reset(q: Qubit) : (Unit)
 	{
@@ -326,7 +326,7 @@
 
 	operation SendMessage(message: Bool) : (Bool)
 	{
-		mutable mesuremenet = false;
+		mutable measurement = false;
 
 		using (qubits = Qubit[2])
 		{
@@ -342,25 +342,28 @@
 			
 			if (M(there) == One)
 			{
-				set mesuremenet = true;
+				set measurement = true;
 			}
 
 			ForEach(qubits, Reset);
 		}
 
-		return mesuremenet;
+		return measurement;
 	}
 
 	operation Teleport(msg: Qubit, there: Qubit) : Unit
 	{
 		using (here = Qubit())
 		{
+			//Make superposition of here and there
 			H(here);
 			CNOT(here, there);
 
+			//Move message to here
 			CNOT(msg, here);
 			H(msg);
 			
+			//"Indirect" measurement 
 			if (M(msg) == One)
 			{
 				Z(there);
