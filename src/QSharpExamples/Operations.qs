@@ -102,7 +102,7 @@
 				CNOT(qubits[0],qubits[1]);
 				
 				let res = M (qubits[0]);
-
+				
 				if (M(qubits[1]) == res)
 				{
 					set agree = agree + 1;

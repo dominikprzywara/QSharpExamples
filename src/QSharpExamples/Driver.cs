@@ -23,7 +23,8 @@ namespace QSharpExamples
                 {
                     var initialValue = i % 2 == 0 ? Result.Zero : Result.One;
                     var result = ReversableGate.Run(qsim, initialValue).Result;
-                    Console.WriteLine($"Reversable gate result is: {result}. Initial value: {initialValue}");
+                    Console.WriteLine($"Reversable gate result is: " +
+                        $"{result}. Initial value: {initialValue}");
                 }
 
                 PressKey("Measurement superposition collapsing");
@@ -31,8 +32,11 @@ namespace QSharpExamples
                 for (int i = 0; i < 15; ++i)
                 {
                     var initialValue = i % 2 == 0 ? Result.One : Result.Zero;
-                    var result = MeasurementCollapsingSuperposition.Run(qsim, initialValue).Result;
-                    Console.WriteLine($"Reversable gate result is: {result.Item1}. Result2: {result.Item2}. Inital value: {initialValue}");
+                    var result = MeasurementCollapsingSuperposition
+                        .Run(qsim, initialValue).Result;
+                    Console.WriteLine(
+                        $"Reversable gate result is: {result.Item1}. " +
+                        $"Result2: {result.Item2}. Inital value: {initialValue}");
                 }
 
                 PressKey("Random number generator");
@@ -51,7 +55,11 @@ namespace QSharpExamples
                     var res = BellTest.Run(qsim, 1000, initial).Result;
 
                     var (numZeros, numOnes, agrees) = res;
-                    Console.WriteLine($"Init:{initial,-4} 0s={numZeros,-4} 1s={numOnes,-4} Agrees = {agrees,-4}");
+                    Console.WriteLine($"" +
+                        $"Init:{initial,-4} " +
+                        $"0s={numZeros,-4} " +
+                        $"1s={numOnes,-4} " +
+                        $"Agrees = {agrees,-4}");
                 }
 
                 PressKey("Deutsch-Jozsa");
@@ -61,23 +69,40 @@ namespace QSharpExamples
                 var negationResult = Negation.Run(qsim).Result;
                 var identityResult = Identity.Run(qsim).Result;
 
-                Console.WriteLine($"Const0: {const0Result.Item1} {const0Result.Item2} {const0Result.Item3}");
-                Console.WriteLine($"Const1: {const1Result.Item1} {const1Result.Item2} {const1Result.Item3}");
-                Console.WriteLine($"Identity: {identityResult.Item1} {identityResult.Item2} {identityResult.Item3}");
-                Console.WriteLine($"Negation: {negationResult.Item1} {negationResult.Item2} {negationResult.Item3}");
+                Console.WriteLine($"Const0: " +
+                    $"{const0Result.Item1} " +
+                    $"{const0Result.Item2} " +
+                    $"{const0Result.Item3}");
+
+                Console.WriteLine($"Const1: " +
+                    $"{const1Result.Item1} " +
+                    $"{const1Result.Item2} " +
+                    $"{const1Result.Item3}");
+
+                Console.WriteLine($"Identity: " +
+                    $"{identityResult.Item1} " +
+                    $"{identityResult.Item2} " +
+                    $"{identityResult.Item3}");
+
+                Console.WriteLine($"Negation: " +
+                    $"{negationResult.Item1} " +
+                    $"{negationResult.Item2} " +
+                    $"{negationResult.Item3}");
 
                 PressKey("Teleportation part 1");
 
                 for (int i = 0; i < 5; ++i)
                 {
-                    Console.WriteLine($"Teleport (msg==false): {SendMessage.Run(qsim, false).Result}");
+                    Console.WriteLine($"Teleport (msg==false): " +
+                        $"{SendMessage.Run(qsim, false).Result}");
                 }
 
                 PressKey("Teleportation part 2");
 
                 for (int i = 0; i < 5; ++i)
                 {
-                    Console.WriteLine($"Teleport (msg==true): {SendMessage.Run(qsim, true).Result}");
+                    Console.WriteLine($"Teleport (msg==true): " +
+                        $"{SendMessage.Run(qsim, true).Result}");
                 }
             }
 
